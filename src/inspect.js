@@ -22,18 +22,30 @@ function removeAll() {
   });
 }
 
-let time = 0;
+let spent = 0;
 const limit = 10;
 const timer = setInterval(() => {
-  if (isWatching && ++time > limit) {
-    removeAll();
-    clearInterval(timer);
+  if (isWatching) {
+    spent = Math.min(limit, spent + 1);
+    if (spent >= limit) {
+      removeAll();
+      clearInterval(timer);
+    }
   }
 }, 1000);
 
+const respondQueries = {
+  popup(respond) {
+    respond({
+      isWatching,
+      url,
+      spent,
+      limit
+    });
+  }
+};
+
 chrome.runtime.onMessage.addListener((message, sender, respond) => {
-  respond({
-    isWatching,
-    url
-  });
+  // query に反応するメソッドをコール
+  respondQueries[message.query](respond);
 });
