@@ -1,0 +1,19 @@
+{
+  "name": "time-limit-by-url",
+  "version": "1.0.0",
+  "description": "Chrome extension",
+  "main": "popup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teramotodaiki/time-limit-by-url.git"
+  },
+  "author": "teramotodaiki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teramotodaiki/time-limit-by-url/issues"
+  },
+  "homepage": "https://github.com/teramotodaiki/time-limit-by-url#readme"
+}
