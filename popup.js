@@ -16,16 +16,13 @@ const render = response => {
     ? url[0] + ' ...etc'
     : url.length > 0 ? url[0] : '';
 
-  let _spent;
-  $('.spent').textContent = _spent = spent;
+  $('.spent').textContent = spent;
   $('.limit').textContent = limit;
 
-  if (isWatching) {
-    setInterval(() => {
-      _spent = Math.min(limit, _spent + 1);
-      $('.spent').textContent = _spent;
-    }, 1000);
-  }
+  setTimeout(() => {
+    // Update view
+    chrome.runtime.sendMessage({ query }, render);
+  }, 250);
 };
 
 document.addEventListener('DOMContentLoaded', event => {
