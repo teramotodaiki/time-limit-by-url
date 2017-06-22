@@ -1,15 +1,20 @@
-const patterns = ['*://www.youtube.com/watch*'];
+const $ = (...args) => document.querySelector(...args);
+const render = response => {
+  const { isWatching, url } = response;
 
-const onLoad = event => {
-  const status = document.querySelector('#status');
-  status.textContent = '';
+  if (isWatching) {
+    $('.is-watching').classList.remove('hidden');
+    $('.not-watching').classList.add('hidden');
+  } else {
+    $('.is-watching').classList.add('hidden');
+    $('.not-watching').classList.remove('hidden');
+  }
 
-  chrome.tabs.query({ url: patterns }, tabs => {
-    const isWatching = tabs.length > 0;
-
-    if (isWatching) {
-      status.textContent = 'You are now watching!';
-    }
-  });
+  $('.url').textContent = url.length > 1
+    ? url[0] + ' ...etc'
+    : url.length > 0 ? url[0] : '';
 };
-document.addEventListener('DOMContentLoaded', onLoad);
+
+document.addEventListener('DOMContentLoaded', event => {
+  chrome.runtime.sendMessage({}, render);
+});

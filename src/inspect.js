@@ -1,9 +1,11 @@
 const patterns = ['*://www.youtube.com/watch*'];
 
 let isWatching = false;
+let url = [];
 function updateState() {
   chrome.tabs.query({ url: patterns }, tabs => {
     isWatching = tabs.length > 0;
+    url = tabs.map(t => t.url);
   });
 }
 
@@ -28,3 +30,10 @@ const timer = setInterval(() => {
     clearInterval(timer);
   }
 }, 1000);
+
+chrome.runtime.onMessage.addListener((message, sender, respond) => {
+  respond({
+    isWatching,
+    url
+  });
+});
