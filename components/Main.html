@@ -1,0 +1,101 @@
+<div class="root">
+  {{#if spent < limit}}
+    <img src="/assets/youtube.png" alt="YouTube" width="200" style="cursor: pointer" on:click="fire('open', 'https://www.youtube.com/')" />
+  {{else}}
+    <img src="/assets/youtube.png" alt="YouTube" width="200" style="filter: grayscale(100%); opacity: 0.5" />
+  {{/if}}
+  <div class="row">
+    <img src="/assets/dice_{{diceNumer}}.svg" width="50" />
+    <Gage color="{{color}}" height="50" rate="{{ (limit - spent) / 360 }}" />
+  </div>
+  <div class="row">
+    {{#if rewardTime < Date.now() }}
+      {{#if isShaking }}
+        <span class="dice shaking" on:click="shake()">🎲</span>
+      {{else}}
+        <span class="dice bounce" on:click="shake()">🎲</span>
+      {{/if}}
+    {{else}}
+      <Gage color="blue" height="8" rate="{{ (Date.now() - rewardTime) / 30 / 60 / 1000 + 1 }}" />
+    {{/if}}
+  </div>
+</div>
+
+<style>
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .row img {
+    margin-right: .5rem;
+  }
+
+  .inspector {
+    flex: 1;
+  }
+
+  .dice {
+    margin: 20px 0;
+    cursor: pointer;
+  }
+
+  .bounce {
+    animation: bounce .6s ease 0s infinite alternate;
+  }
+
+  .shaking {
+    animation: shaking .2s linear 0s infinite;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(3);
+    }
+  }
+
+  @keyframes shaking {
+    0% {
+      transform: scale(3) rotate(0);
+    }
+    100% {
+      transform: scale(3) rotate(360deg);
+    }
+  }
+</style>
+
+<script type="text/javascript">
+  import Gage from './Gage';
+
+  export default {
+    data: () => ({
+      isWatching: false,
+      diceNumer: 1,
+      spent: 0,
+      limit: 0,
+      rewardTime: 0,
+      color: 'gray',
+
+      isShaking: false
+    }),
+    methods: {
+      shake() {
+        const isShaking = this.get('isShaking');
+        if (isShaking) {
+          this.fire('shake');
+        }
+        this.set({
+          isShaking: !isShaking
+        });
+      }
+    },
+    components: {
+      Gage
+    }
+  }
+</script>

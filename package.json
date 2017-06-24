@@ -4,6 +4,8 @@
   "description": "Chrome extension",
   "main": "popup.js",
   "scripts": {
+    "start": "webpack -w",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,17 @@
   "bugs": {
     "url": "https://github.com/teramotodaiki/time-limit-by-url/issues"
   },
-  "homepage": "https://github.com/teramotodaiki/time-limit-by-url#readme"
+  "homepage": "https://github.com/teramotodaiki/time-limit-by-url#readme",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "html-webpack-plugin": "^2.28.0",
+    "svelte-loader": "^2.0.1",
+    "webpack": "^3.0.0"
+  },
+  "dependencies": {
+    "svelte": "^1.22.5"
+  }
 }
