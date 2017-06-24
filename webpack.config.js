@@ -51,8 +51,6 @@ module.exports = (async () => {
         { from: 'assets', to: 'assets' }
       ])
     ],
-    devtool: process.env.NODE_ENV === 'production'
-      ? 'hidden-source-map'
-      : 'inline-source-map'
+    devtool: 'inline-source-map'
   };
 })();
