@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Time Management Game for YouTube",
-  "short_name": "Timer of YT",
-  "description": "Set time limit for browsing of specific URL",
-  "version": "1.0",
+  "name": "じかんをまもろう！ YouTubeはあと何分？",
+  "short_name": "YouTube タイマー",
+  "description": "YouTube の見過ぎを防止する",
+  "version": "1.0.1",
 
   "background": {
     "scripts": [
