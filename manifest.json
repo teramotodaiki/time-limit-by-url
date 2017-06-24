@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Time Limit by URL",
+  "name": "Time Management Game for YouTube",
+  "short_name": "Timer of YT",
   "description": "Set time limit for browsing of specific URL",
   "version": "1.0",
 
@@ -15,7 +16,11 @@
     "default_popup": "popup.html"
   },
   "icons": {
-    "16": "assets/icon.png"
+    "48": "assets/mipmap-mdpi/icon.png",
+    "72": "assets/mipmap-hdpi/icon.png",
+    "96": "assets/mipmap-xhdpi/icon.png",
+    "144": "assets/mipmap-xxhdpi/icon.png",
+    "192": "assets/mipmap-xxxhdpi/icon.png"
   },
   "permissions": [
     "tabs"
