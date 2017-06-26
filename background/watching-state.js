@@ -4,7 +4,11 @@ export default class WatchingState {
     this.tabs = [];
     this.spent = 0; // [sec]
     this.limit = 60; // [sec]
-    this.patterns = ['*://www.youtube.com/watch*'];
+    this.patterns = [
+      '*://www.youtube.com/watch*',
+      '*://twitter.com/*',
+      '*://www.facebook.com/*'
+    ];
     this.diceNumer = 1;
     this.rewardTime = Date.now(); // [msec]
     this.delayTime = 30 * 60 * 1000; // [msec]
