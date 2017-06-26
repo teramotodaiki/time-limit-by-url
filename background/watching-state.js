@@ -35,7 +35,9 @@ export default class WatchingState {
   }
 
   get color() {
-    return this.limit - this.spent < 30 ? '#aa0000' : '#00aa00';
+    return this.limit - this.spent < 30
+      ? 'red'
+      : this.isWatching ? 'orange' : 'limegreen';
   }
 
   get plainObject() {
