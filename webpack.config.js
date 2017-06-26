@@ -46,10 +46,12 @@ module.exports = (async () => {
         template: './popup/index.html',
         excludeChunks: ['background']
       }),
-      new CopyWebpackPlugin([
-        { from: 'manifest.json' },
-        { from: 'assets', to: 'assets' }
-      ])
+      new CopyWebpackPlugin(
+        [{ from: 'manifest.json' }, { from: 'assets', to: 'assets' }],
+        {
+          ignore: ['*.DS_Store']
+        }
+      )
     ],
     devtool: 'inline-source-map'
   };
