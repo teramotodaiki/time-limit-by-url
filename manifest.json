@@ -23,6 +23,7 @@
     "192": "assets/mipmap-xxxhdpi/icon.png"
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ]
 }
