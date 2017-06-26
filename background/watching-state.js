@@ -57,14 +57,6 @@ export default class WatchingState {
     });
   };
 
-  setState(state) {
-    for (let key in state) {
-      if (state.hasOwnProperty(key)) {
-        this[key] = state[key];
-      }
-    }
-  }
-
   spend() {
     this.spent = Math.min(this.limit, this.spent + 1);
     return this.spent >= this.limit;
