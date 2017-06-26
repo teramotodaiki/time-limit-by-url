@@ -6,7 +6,7 @@ export default class WatchingState {
     this.limit = 60; // [sec]
     this.patterns = [
       '*://www.youtube.com/watch*',
-      '*://www.nicovideo.jp/*',
+      '*://www.nicovideo.jp/watch*',
       '*://twitter.com/*',
       '*://www.facebook.com/*'
     ];
