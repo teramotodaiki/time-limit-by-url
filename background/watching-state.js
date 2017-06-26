@@ -57,16 +57,9 @@ export default class WatchingState {
     });
   };
 
-  setState(state) {
-    for (let key in state) {
-      if (state.hasOwnProperty(key)) {
-        this[key] = state[key];
-      }
-    }
-  }
-
   spend() {
     this.spent = Math.min(this.limit, this.spent + 1);
+    this.saveState();
     return this.spent >= this.limit;
   }
 
@@ -82,5 +75,24 @@ export default class WatchingState {
     this.spent = 0;
     // 次のサイコロまで　あと…
     this.rewardTime = Date.now() + this.delayTime;
+
+    this.saveState();
+  }
+
+  saveState(callback) {
+    chrome.storage.sync.set(this.plainObject, callback);
+  }
+
+  loadState(callback) {
+    const keys = ['spent', 'limit', 'diceNumer', 'rewardTime'];
+
+    chrome.storage.sync.get(keys, result => {
+      for (const key of keys) {
+        if (key in result) {
+          this[key] = result[key];
+        }
+      }
+      callback();
+    });
   }
 }

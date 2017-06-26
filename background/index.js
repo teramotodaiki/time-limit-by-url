@@ -9,7 +9,7 @@ function removeAll() {
   }
 }
 
-setInterval(() => {
+const main = () => {
   if (state.isWatching && state.spend()) {
     removeAll();
     state.isWatching = false;
@@ -24,7 +24,11 @@ setInterval(() => {
   } else {
     chrome.browserAction.disable();
   }
-}, 1000);
+};
+
+state.loadState(() => {
+  setInterval(main, 1000);
+});
 
 const respondQueries = {
   popup(message, respond) {
