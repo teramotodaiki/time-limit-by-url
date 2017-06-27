@@ -81,13 +81,13 @@ export default class WatchingState {
   }
 
   saveState(callback) {
-    chrome.storage.sync.set(this.plainObject, callback);
+    chrome.storage.local.set(this.plainObject, callback);
   }
 
   loadState(callback) {
     const keys = ['spent', 'limit', 'diceNumer', 'rewardTime'];
 
-    chrome.storage.sync.get(keys, result => {
+    chrome.storage.local.get(keys, result => {
       for (const key of keys) {
         if (key in result) {
           this[key] = result[key];
